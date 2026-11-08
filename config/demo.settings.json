@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "mode": "demo",
+  "demo_only": true,
+  "notice": "Demostración. No se realizan pedidos, cobros ni envíos reales.",
+  "brand_name": "Vainelú",
+  "locale": "es-ES",
+  "currency": "EUR",
+  "time_zone": "Europe/Madrid",
+  "localization_status": "proposed_for_implementation_not_a_confirmed_business_location",
+  "operations": {
+    "real_sales_enabled": false,
+    "external_payments_enabled": false,
+    "external_notifications_enabled": false,
+    "external_writes_enabled": false,
+    "checkout_adapter": "local_simulation",
+    "persistence": "isolated_local_demo",
+    "notifications_mode": "log",
+    "allow_real_personal_data": false
+  },
+  "fulfillment": {
+    "available_modes": [
+      "simulated_pickup"
+    ],
+    "default_mode": "simulated_pickup",
+    "pickup": {
+      "label": "Recogida presencial simulada",
+      "address": null,
+      "contact_email": null,
+      "phone": null,
+      "notice": "Esta demostración no representa una dirección real de recogida."
+    },
+    "delivery": {
+      "enabled": false,
+      "service_area": null,
+      "postal_codes": null,
+      "fee_cents": null
+    }
+  },
+  "availability": {
+    "clock_source": "server",
+    "minimum_notice": {
+      "hours": 48,
+      "basis": "elapsed_hours",
+      "from": "server_now_utc",
+      "until": "slot_start_instant_utc",
+      "comparison": "greater_than_or_equal",
+      "local_slot_time_zone": "Europe/Madrid"
+    },
+    "booking_window": {
+      "calendar_days": 30,
+      "anchor": "server_today_in_business_time_zone",
+      "first_date_offset_days": 0,
+      "last_date_offset_days": 29,
+      "bounds_inclusive": true,
+      "notice": "Son 30 fechas locales contando hoy. Cada franja debe superar además la antelación mínima de 48 horas transcurridas."
+    },
+    "open_weekdays_iso": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "closed_dates": [],
+    "slots": [
+      {
+        "id": "demo-pickup-1200",
+        "start_local": "12:00",
+        "end_local": "13:00",
+        "demo_only": true
+      },
+      {
+        "id": "demo-pickup-1700",
+        "start_local": "17:00",
+        "end_local": "18:00",
+        "demo_only": true
+      }
+    ],
+    "real_service_hours_confirmed": false
+  },
+  "capacity": {
+    "unit": "servings",
+    "scope": "local_service_date",
+    "daily_limit": 80,
+    "line_consumption": "quantity * variant.servings",
+    "count_held_reservations": true,
+    "count_committed_orders": true,
+    "count_expired_pending_reconciliation": true,
+    "independent_slot_limit": null
+  },
+  "reservations": {
+    "hold_minutes": 30,
+    "clock_source": "server",
+    "demo_expiration_adapter": "local_simulation",
+    "provider_contract": {
+      "applies_to": [
+        "test",
+        "production"
+      ],
+      "provider": "stripe",
+      "align_with_session_expires_at": true,
+      "release_on_local_clock_alone": false,
+      "confirm_provider_session_terminal_before_release": true,
+      "retain_on_ambiguous_provider_response": true,
+      "late_paid_after_release": "paid_requires_manual_review"
+    }
+  },
+  "checkout": {
+    "collect_real_contact_data": false,
+    "receipt_heading": "Pedido de demostración",
+    "payment_status_is_simulated": true,
+    "real_order_created": false,
+    "confirmation_policy": "simulated_after_demo_payment_and_capacity_validation",
+    "requires_manual_owner_acceptance": false,
+    "simulated_order_confirmation": true
+  },
+  "production_guard": {
+    "never_promote_demo_catalog_automatically": true,
+    "never_promote_demo_business_rules_automatically": true,
+    "requires_verified_business_configuration": true,
+    "requires_explicit_owner_live_launch": true
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "mode": "demo",
+  "demo_only": true,
+  "brand_name": "Vainelú",
+  "currency": "EUR",
+  "price_unit": "cent",
+  "price_scope": "per_whole_cake",
+  "prices_are_fictional": true,
+  "servings_are_fictional": true,
+  "taxes_included": null,
+  "tax_rate_bps": null,
+  "real_sales_enabled": false,
+  "notice": "Productos, tamaños y precios de demostración. No existe información alimentaria verificada ni autorización para venderlos como productos reales.",
+  "categories": [
+    {
+      "id": "clasicas",
+      "label": "Clásicas"
+    },
+    {
+      "id": "cumpleanos",
+      "label": "Cumpleaños"
+    },
+    {
+      "id": "personalizadas",
+      "label": "Personalizadas"
+    }
+  ],
+  "products": [
+    {
+      "id": "demo-chocolate",
+      "slug": "chocolate",
+      "name": "Chocolate",
+      "description": "Tarta ficticia de chocolate para probar el catálogo y la selección de tamaño.",
+      "category_ids": [
+        "clasicas",
+        "cumpleanos"
+      ],
+      "demo_only": true,
+      "published_in_demo": true,
+      "published_in_production": false,
+      "verified": false,
+      "ingredients": null,
+      "allergens": null,
+      "ingredients_verified": false,
+      "allergens_verified": false,
+      "asset": null,
+      "image_alt": null,
+      "default_variant_id": "demo-chocolate-8",
+      "variants": [
+        {
+          "id": "demo-chocolate-8",
+          "label": "8 raciones",
+          "servings": 8,
+          "price_cents": 3200,
+          "demo_only": true
+        },
+        {
+          "id": "demo-chocolate-12",
+          "label": "12 raciones",
+          "servings": 12,
+          "price_cents": 4800,
+          "demo_only": true
+        },
+        {
+          "id": "demo-chocolate-16",
+          "label": "16 raciones",
+          "servings": 16,
+          "price_cents": 6400,
+          "demo_only": true
+        }
+      ]
+    },
+    {
+      "id": "demo-frutos-rojos",
+      "slug": "frutos-rojos",
+      "name": "Frutos rojos",
+      "description": "Tarta ficticia de frutos rojos para probar el catálogo y la selección de tamaño.",
+      "category_ids": [
+        "clasicas",
+        "cumpleanos"
+      ],
+      "demo_only": true,
+      "published_in_demo": true,
+      "published_in_production": false,
+      "verified": false,
+      "ingredients": null,
+      "allergens": null,
+      "ingredients_verified": false,
+      "allergens_verified": false,
+      "asset": null,
+      "image_alt": null,
+      "default_variant_id": "demo-frutos-rojos-8",
+      "variants": [
+        {
+          "id": "demo-frutos-rojos-8",
+          "label": "8 raciones",
+          "servings": 8,
+          "price_cents": 3800,
+          "demo_only": true
+        },
+        {
+          "id": "demo-frutos-rojos-12",
+          "label": "12 raciones",
+          "servings": 12,
+          "price_cents": 5700,
+          "demo_only": true
+        },
+        {
+          "id": "demo-frutos-rojos-16",
+          "label": "16 raciones",
+          "servings": 16,
+          "price_cents": 7600,
+          "demo_only": true
+        }
+      ]
+    },
+    {
+      "id": "demo-pistacho",
+      "slug": "pistacho",
+      "name": "Pistacho",
+      "description": "Tarta ficticia de pistacho para probar el catálogo y la selección de tamaño.",
+      "category_ids": [
+        "clasicas"
+      ],
+      "demo_only": true,
+      "published_in_demo": true,
+      "published_in_production": false,
+      "verified": false,
+      "ingredients": null,
+      "allergens": null,
+      "ingredients_verified": false,
+      "allergens_verified": false,
+      "asset": null,
+      "image_alt": null,
+      "default_variant_id": "demo-pistacho-8",
+      "variants": [
+        {
+          "id": "demo-pistacho-8",
+          "label": "8 raciones",
+          "servings": 8,
+          "price_cents": 4200,
+          "demo_only": true
+        },
+        {
+          "id": "demo-pistacho-12",
+          "label": "12 raciones",
+          "servings": 12,
+          "price_cents": 6300,
+          "demo_only": true
+        },
+        {
+          "id": "demo-pistacho-16",
+          "label": "16 raciones",
+          "servings": 16,
+          "price_cents": 8400,
+          "demo_only": true
+        }
+      ]
+    }
+  ]
+}

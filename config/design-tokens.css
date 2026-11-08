@@ -1,0 +1,33 @@
+/* Valores iniciales propuestos; comparar con la referencia aprobada.
+   No constituye una interfaz implementada. */
+:root {
+  --color-cream: #fff8ec;
+  --color-cream-surface: #f4e4cc;
+  --color-sand: #e9d5b6;
+  --color-caramel: #d8b78c;
+  --color-cocoa: #422c21;
+  --color-caramel-dark: #9c6238;
+  --color-text: var(--color-cocoa);
+  --color-background: var(--color-cream);
+  --color-primary-background: var(--color-caramel);
+  --color-primary-text: var(--color-cocoa);
+  --font-display: "Fredoka", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+  --text-body: 1rem;
+  --text-hero: clamp(2.75rem, 6.3vw, 6rem);
+  --radius-card: 1.5rem;
+  --radius-control: 0.875rem;
+  --radius-pill: 999px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --content-max: 93rem;
+  --touch-target: 2.75rem;
+  --focus-ring-color: var(--color-cocoa);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 3px;
+}

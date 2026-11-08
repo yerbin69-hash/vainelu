@@ -1,0 +1,10 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import photos from '../config/creaciones.json';
+export default function Gallery({onQuote}:{onQuote:(title:string)=>void}){
+ const [all,setAll]=useState(false),[selected,setSelected]=useState<typeof photos[number]|null>(null);
+ const dialog=useRef<HTMLDialogElement>(null);
+ useEffect(()=>{if(selected&&!dialog.current?.open)dialog.current?.showModal();},[selected]);
+ function close(){dialog.current?.close();setSelected(null);}
+ return <section className="creations" id="creaciones" aria-labelledby="creaciones-title"><div className="creations-heading"><div><p className="eyebrow">Un toque muy tuyo</p><h2 id="creaciones-title">Creaciones para inspirarte</h2><p>Explora las fotos y cuéntanos cómo imaginas tu próxima tarta.</p></div><button className="outline" onClick={()=>onQuote('')}>Solicitar presupuesto</button></div><div className="creations-grid">{photos.slice(0,all?photos.length:8).map(p=><figure key={p.id}><button className="creation-photo" onClick={()=>setSelected(p)} aria-label={`Ampliar: ${p.title}`}><img src={p.thumbnail} alt={p.alt} width={480} height={600} loading="lazy"/></button><figcaption>{p.title}</figcaption></figure>)}</div><div className="creations-bottom"><p>Encargos a medida · Precio, tamaño y fecha sujetos a presupuesto.</p><button className="outline" aria-expanded={all} onClick={()=>setAll(!all)}>{all?'Ver menos creaciones':`Ver todas las creaciones (${photos.length})`}</button></div><dialog className="creation-dialog" ref={dialog} onClose={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)close();}} aria-label={selected?.title||'Fotografía de una creación'}>{selected&&<><button className="creation-close" aria-label="Cerrar fotografía" autoFocus onClick={close}>×</button><img src={selected.src} alt={selected.alt} width={1122} height={1402}/><div><h3>{selected.title}</h3><button onClick={()=>{const title=selected.title;close();onQuote(title);}}>Quiero una tarta así</button></div></>}</dialog></section>;
+}

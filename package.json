@@ -1,0 +1,40 @@
+{
+  "name": "vainelu",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/domain.test.ts",
+    "test:e2e": "playwright test",
+    "test:db": "tsx tests/database.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
+    "lucide-react": "^0.468.0",
+    "luxon": "^3.7.2",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "^0.0.1",
+    "stripe": "^23.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/luxon": "^3.7.0",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "embedded-postgres": "^17.11.0-beta.19",
+    "pg": "^8.23.1",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

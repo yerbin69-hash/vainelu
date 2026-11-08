@@ -1,0 +1,114 @@
+{
+  "package": "Vainelu_Codex",
+  "brand": "Vainelú",
+  "version": "1.0",
+  "date": "2026-11-07",
+  "language": "es",
+  "deliverable": "documentation_and_reference",
+  "application_implemented": false,
+  "application_tests_executed": false,
+  "reference_sha256": "4f1339f06f899e652538e8fe7c2379661aab265a7e83913daf00f955c0f91553",
+  "manifest_excludes_itself": true,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "size_bytes": 4696,
+      "sha256": "c10d4cbaf16d6ee07096155dbd2e4ee6513c5adc17f0142ec53d5e3230e5508c"
+    },
+    {
+      "path": "DOCUMENTACION_COMPLETA.md",
+      "size_bytes": 72981,
+      "sha256": "34702a6d3edeaf6cec58def6e8ff8a6c7e6a6adc8e85c9fd3aa2b26e91547649"
+    },
+    {
+      "path": "INICIAR_EN_CODEX.txt",
+      "size_bytes": 4457,
+      "sha256": "35d9b12a9bc3aadd1fafa8ee972a056dc2cdf8d6db833f2dd24da5909198da7b"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 4458,
+      "sha256": "907d95d6c97abe2e0dd908e2e66fcaa96dca53e2a9b8d9b32730176248942544"
+    },
+    {
+      "path": "config/.env.example",
+      "size_bytes": 1928,
+      "sha256": "4f90f3b096a7939ddc0baea2cb8fd9c8b09bdda8036c094c5d12d282a1cf75b9"
+    },
+    {
+      "path": "config/business.example.json",
+      "size_bytes": 2672,
+      "sha256": "48b72371073ab18acd487c9dc799d8b3ad7dec4ee13770a1e5597a241215d8e3"
+    },
+    {
+      "path": "config/catalogo.demo.json",
+      "size_bytes": 4247,
+      "sha256": "5954ce6313a44548c8b9f6e9870ba4f00cc9d8a3c9e2a537a3b6f92e58e89424"
+    },
+    {
+      "path": "config/demo.settings.json",
+      "size_bytes": 3713,
+      "sha256": "f90a8374ae6fed9c9040b444be92f61f3799af07c2cd726ff80b75f865307b38"
+    },
+    {
+      "path": "config/design-tokens.css",
+      "size_bytes": 1039,
+      "sha256": "a50fee8b74402055505112649178bdac5e7eba9b0fe481a1a6347c697299b1d7"
+    },
+    {
+      "path": "docs/01_decisiones_y_alcance.md",
+      "size_bytes": 6386,
+      "sha256": "eed88f01d64b46b41e63ea0b651ea9223def4ed26c26e9a3b0f9aab3243014b7"
+    },
+    {
+      "path": "docs/02_diseno_y_componentes.md",
+      "size_bytes": 9408,
+      "sha256": "7fd658b0664ecad7b3379250814f1e5d05976a610f954fb6b5a6a186a7604924"
+    },
+    {
+      "path": "docs/03_requisitos_y_flujos.md",
+      "size_bytes": 16430,
+      "sha256": "5aeacdb7984099bec26dad6078d7fc9450b9ec1cef0106553fd8726539deface"
+    },
+    {
+      "path": "docs/04_arquitectura_y_datos.md",
+      "size_bytes": 18867,
+      "sha256": "6278c2de8245f16f1fc2130148919b3538aab6164fef17941f2fe3911e224ab4"
+    },
+    {
+      "path": "docs/05_plan_y_aceptacion.md",
+      "size_bytes": 9674,
+      "sha256": "c2a0a7550dfae6ca55b93bc7c7aee5ed0db04f1101134c1b0e16390d4ec323e4"
+    },
+    {
+      "path": "docs/06_operacion_y_entrega.md",
+      "size_bytes": 7599,
+      "sha256": "bbbe76069511e8ba51e4f50a45347175fcdbdf479a7fdb291d5329aaf4d55207"
+    },
+    {
+      "path": "docs/07_fuentes_tecnicas.md",
+      "size_bytes": 3179,
+      "sha256": "7d878778f91a68ca5fbff6cab9225f1d6a0e49721b12c8ea94f4d18d879512f6"
+    },
+    {
+      "path": "plantillas/entrega_codex.md",
+      "size_bytes": 1969,
+      "sha256": "d5a91db3bc322d061e5e9ced9e6a63dd37dcf44a104e47ded58be998cd7af52b"
+    },
+    {
+      "path": "plantillas/registro_pruebas.csv",
+      "size_bytes": 6175,
+      "sha256": "653e7bcaa50c2b14799546fb9129c90b14206b4ca37cf524fae808b0a068dcff"
+    },
+    {
+      "path": "referencias/LEER_REFERENCIA.md",
+      "size_bytes": 2652,
+      "sha256": "a26ca19d66006682d14d9d901793a28839795c4f740d816924dcd27015d20390"
+    },
+    {
+      "path": "referencias/diseno_aprobado_crema.png",
+      "size_bytes": 1943906,
+      "sha256": "4f1339f06f899e652538e8fe7c2379661aab265a7e83913daf00f955c0f91553"
+    }
+  ]
+}

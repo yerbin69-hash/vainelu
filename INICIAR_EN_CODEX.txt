@@ -1,0 +1,30 @@
+IMPLEMENTA VAINELÚ CON LA DOCUMENTACIÓN ADJUNTA
+
+Quiero desarrollar una web para vender tartas llamada Vainelú. El nombre y el diseño crema están elegidos. Tu tarea es implementar el proyecto y comprobarlo, no limitarte a proponer un plan.
+
+CONTEXTO Y LECTURA
+Lee primero las instrucciones existentes del repositorio, README.md, AGENTS.md y docs/01_decisiones_y_alcance.md. Inspecciona visualmente referencias/diseno_aprobado_crema.png y lee referencias/LEER_REFERENCIA.md. Después consulta los documentos de diseño, flujos, arquitectura y aceptación. DOCUMENTACION_COMPLETA.md reúne esos documentos como alternativa de lectura; los archivos individuales son la fuente mantenida.
+
+Si recibes este texto por separado, necesitas también el ZIP Vainelu_Documentacion_Codex.zip y su imagen de referencia. No reconstruyas el diseño a partir del texto si la imagen está disponible en el paquete.
+
+DISEÑO FIJADO
+Usa exactamente la dirección visual aprobada: edición crema del diseño originalmente rotulado «03 · PISTACHO MODERNO». Conserva fondos crema, botones caramelo, texto cacao, tipografía redondeada y gruesa, fotografías grandes y distribución. Sustituye «Tu pastelería» por «Vainelú». La banda numerada superior y la nota inferior son anotaciones de presentación y no pertenecen a la web.
+
+La portada conserva: cabecera; titular «Tu tarta. A tu manera.» y fotografía a la derecha en escritorio; botones «Ver tartas» y «Personaliza la tuya»; franja de tres pasos; «Encuentra tu favorita»; categorías; tres tarjetas horizontales de tartas. Adapta esta jerarquía a móvil. Implementa HTML y controles reales; no conviertas la captura en una página con botones superpuestos. No cambies el nombre, el estilo ni la paleta por iniciativa propia.
+
+IMPLEMENTACIÓN
+Inspecciona el proyecto. Si no existe, crea uno independiente. Para un proyecto nuevo se propone Next.js App Router, React, TypeScript y Tailwind, con Supabase para persistencia, administración y archivos, y Stripe Checkout alojado en pruebas. Si existe una base compatible, adáptala sin sustituirla innecesariamente. Consulta documentación vigente, elige versiones estables compatibles y conserva un archivo de bloqueo.
+
+Construye catálogo, ficha con opciones y raciones, carrito editable, fecha y recepción, compra como invitado, confirmación y consulta privada del pedido. Añade administración de productos, pedidos y disponibilidad. Separa las solicitudes de presupuesto sin precio cerrado del proceso de compra tarifada.
+
+Empieza por un modo demo ejecutable sin credenciales, claramente identificado y sin cobros ni envíos. Después prepara y conecta el modo test con persistencia compartida y pagos de prueba cuando estén disponibles las credenciales. La falta de credenciales no debe detener el diseño, los flujos locales, el esquema, las migraciones ni las pruebas independientes. No inventes que una integración funciona.
+
+Los precios 32/38/42 €, tamaños y reglas del catálogo incluido son ejemplos. Los datos reales pendientes están en config/business.example.json. Usa config/demo.settings.json solo para demostración. No conviertas datos ficticios en compromisos del negocio.
+
+REGLAS ESENCIALES
+El servidor recalcula importes en céntimos y valida opciones, fecha y capacidad. La reserva de capacidad debe ser transaccional. Confirma pagos mediante eventos verificados y reconciliación; una URL de éxito no demuestra un cobro. Evita duplicados por reintento y no liberes capacidad mientras una sesión pueda pagarse. Protege pedidos, administración y secretos. Sigue docs/04_arquitectura_y_datos.md para los detalles.
+
+COMPROBACIÓN Y ENTREGA
+Trabaja por las fases de docs/05_plan_y_aceptacion.md. Revisa la portada a 1536×1024, 768×1024 y 390×844. Ejecuta verificaciones útiles de importes, fechas, concurrencia, permisos y pagos. Registra únicamente resultados realmente ejecutados en plantillas/registro_pruebas.csv. Comprueba por separado el checkout externo en sandbox; no lo des por probado con un webhook simulado.
+
+Entrega código, migraciones, configuración de ejemplo, instrucciones de arranque, capturas y el informe de plantillas/entrega_codex.md. Distingue demo, integración de pruebas y preparación para producción. Completa decisiones reversibles con criterio y documenta los bloqueos concretos. Esta fase no solicita comprar dominios, activar ventas reales, enviar comunicaciones ni publicar la web.

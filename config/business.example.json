@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Plantilla de configuración real de Vainelú pendiente de completar y verificar por el negocio.",
+  "brand": {
+    "display_name": "Vainelú",
+    "slug": "vainelu",
+    "name_confirmed_by_owner": true,
+    "logo_asset": null
+  },
+  "proposed_defaults": {
+    "locale": "es-ES",
+    "currency": "EUR",
+    "time_zone": "Europe/Madrid",
+    "status": "implementation_proposal",
+    "business_location_confirmed": false
+  },
+  "operations": {
+    "production_ready": false,
+    "real_sales_enabled": false,
+    "payments_enabled": false,
+    "external_notifications_enabled": false,
+    "notifications_mode": "log"
+  },
+  "business_identity": {
+    "legal_name": null,
+    "tax_id": null,
+    "country": null,
+    "registered_address": null,
+    "verified": false
+  },
+  "contact": {
+    "public_email": null,
+    "phone": null,
+    "whatsapp": null,
+    "verified": false
+  },
+  "website": {
+    "public_domain": null,
+    "public_url": null,
+    "social_profiles": null
+  },
+  "fulfillment": {
+    "pickup": {
+      "enabled": null,
+      "address": null,
+      "instructions": null,
+      "verified": false
+    },
+    "delivery": {
+      "enabled": null,
+      "service_area": null,
+      "postal_codes": null,
+      "fee_cents": null,
+      "minimum_order_cents": null,
+      "instructions": null,
+      "verified": false
+    }
+  },
+  "availability": {
+    "minimum_notice_elapsed_hours": null,
+    "booking_window_calendar_days": null,
+    "daily_capacity_servings": null,
+    "weekly_service_hours": null,
+    "closed_dates": null,
+    "special_open_dates": null,
+    "slot_limits": null,
+    "verified": false
+  },
+  "commercial_rules": {
+    "prices_include_tax": null,
+    "tax_rate_bps": null,
+    "tax_treatment": null,
+    "minimum_order_cents": null,
+    "order_acceptance_policy": null,
+    "cancellation_policy": null,
+    "refund_policy": null,
+    "verified": false
+  },
+  "catalog_verification": {
+    "real_catalog_verified": false,
+    "prices_verified": false,
+    "servings_verified": false,
+    "ingredients_verified": false,
+    "allergens_verified": false,
+    "product_photos_verified": false
+  },
+  "legal_content": {
+    "seller_information": null,
+    "terms_of_sale": null,
+    "privacy_policy": null,
+    "cookie_configuration": null,
+    "data_retention_policy": null,
+    "verified": false
+  },
+  "launch": {
+    "owner_authorized_live_launch": false,
+    "test_checkout_verified": false,
+    "admin_access_verified": false,
+    "capacity_concurrency_verified": false,
+    "payment_reconciliation_verified": false,
+    "configuration_reviewed_at": null,
+    "configuration_reviewed_by": null
+  }
+}

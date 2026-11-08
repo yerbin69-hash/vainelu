@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.env*
+!.env.example
+!config/.env.example
+*.tsbuildinfo
+test-results/
+.pg-test/
+evidence/
