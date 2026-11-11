@@ -1,3 +1,4 @@
+import { loadCatalog } from "../../../lib/server/catalog";
 import settings from "../../../config/demo.settings.json";
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
         { status: 403 },
       );
     const body = await req.json();
-    const summary = price(body.lines);
+    const summary = price(body.lines, await loadCatalog());
     if (body.date) validateDate(body.date, body.slot);
     if (summary.servings > settings.capacity.daily_limit)
       throw Error("El pedido supera las 80 raciones de capacidad demo.");

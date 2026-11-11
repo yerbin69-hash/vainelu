@@ -13,7 +13,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { Line, products, price, money } from "../lib/domain";
+import { type Line, type CatalogProduct, price, money } from "../lib/domain";
 import settings from "../config/demo.settings.json";
 type Order = {
   id: string;
@@ -24,15 +24,15 @@ type Order = {
   items: ReturnType<typeof price>["items"];
   status: string;
 };
-export default function Shop() {
+export default function Shop({ products, catalogUnavailable = false }: { products: CatalogProduct[]; catalogUnavailable?: boolean }) {
   const submitting = useRef(false);
   const [quoteIdea,setQuoteIdea]=useState("");
   const [cart, setCart] = useState<Line[]>([]),
     [ready, setReady] = useState(false),
     [category, setCategory] = useState("Todas"),
     [view, setView] = useState("home"),
-    [product, setProduct] = useState(products[0]),
-    [variant, setVariant] = useState(products[0].variants[0].id),
+    [product, setProduct] = useState<CatalogProduct | undefined>(products[0]),
+    [variant, setVariant] = useState(products[0]?.variants[0]?.id ?? ""),
     [message, setMessage] = useState(""),
     [quantity, setQuantity] = useState(1),
     [editing, setEditing] = useState(-1),
@@ -47,8 +47,21 @@ export default function Shop() {
   useEffect(() => {
     try {
       const c = JSON.parse(localStorage.getItem("vainelu-cart") || "[]");
-      if (c.length) price(c);
-      setCart(c);
+      if (!Array.isArray(c)) throw Error("Cesta inválida");
+      if (!catalogUnavailable) {
+        const reviewed = c.flatMap((line: Line) => {
+          const updated = line.variantId === "demo-chocolate-8" && products.some(p => p.variants.some(v => v.id === "demo-choc-8"))
+            ? { ...line, variantId: "demo-choc-8" } : line;
+          try {
+            price([updated], products);
+            return [updated];
+          } catch {
+            return [];
+          }
+        });
+        if (reviewed.length !== c.length) setNotice("Se retiraron opciones de la cesta que ya no están disponibles.");
+        setCart(reviewed);
+      }
     } catch {
       localStorage.removeItem("vainelu-cart");
     }
@@ -72,8 +85,8 @@ export default function Shop() {
     }
   }, []);
   useEffect(() => {
-    if (ready) localStorage.setItem("vainelu-cart", JSON.stringify(cart));
-  }, [cart, ready]);
+    if (ready && !catalogUnavailable) localStorage.setItem("vainelu-cart", JSON.stringify(cart));
+  }, [cart, ready, catalogUnavailable]);
   function go(v: string) {
     setView(v);
     setError("");
@@ -82,13 +95,15 @@ export default function Shop() {
   }
   function open(p: (typeof products)[number], i = -1) {
     setProduct(p);
-    setVariant(i >= 0 ? cart[i].variantId : p.variants[0].id);
+    setVariant(i >= 0 ? cart[i].variantId : (p.variants.find(v => v.available !== false) ?? p.variants[0]).id);
     setMessage(i >= 0 ? cart[i].message : "");
     setQuantity(i >= 0 ? cart[i].quantity : 1);
     setEditing(i);
     go("product");
   }
+  const selectedVariant = product?.variants.find(v => v.id === variant);
   function add() {
+    if (!product || !selectedVariant || selectedVariant.available === false) return;
     localStorage.removeItem("vainelu-operation");
     const line = {
       productId: product.id,
@@ -102,7 +117,7 @@ export default function Shop() {
     setNotice("Tarta añadida a la cesta.");
     go("home");
   }
-  const total = cart.length ? price(cart).total : 0;
+  const total = cart.length ? price(cart, products).total : 0;
   const count = cart.reduce((n, l) => n + l.quantity, 0);
   async function checkout(e: React.FormEvent) {
     e.preventDefault();
@@ -118,6 +133,7 @@ export default function Shop() {
       });
       const data = await res.json();
       if (!res.ok) throw Error(data.error);
+      if (data.total !== total) throw Error("El precio ha cambiado. Recarga la página y revisa la cesta.");
       if (!date) throw Error("Selecciona la fecha de recogida.");
       const orders: Order[] = JSON.parse(
         localStorage.getItem("vainelu-orders") || "[]",
@@ -298,6 +314,7 @@ export default function Shop() {
                 )}
               </div>
             </div>
+            {catalogUnavailable && <p role="status">El catálogo no está disponible en este momento. Vuelve a cargar la página.</p>}
             <div className="cards">
               {products
                 .filter(
@@ -314,21 +331,22 @@ export default function Shop() {
                 .map((p) => (
                   <article key={p.id} className="cake-card">
                     <img
-                      src={`/images/${p.slug}.webp`}
+                      src={p.photo}
                       alt={`Tarta de ${p.name.toLowerCase()} de demostración`}
                     />
                     <div>
                       <h3>{p.name}</h3>
                       <p>
-                        Desde{" "}
-                        <strong>{money(p.variants[0].price_cents)}</strong>
+                        {p.variants.some(v => v.available !== false) ? (
+                          <>Desde <strong>{money(Math.min(...p.variants.filter(v => v.available !== false).map(v => v.price_cents)))}</strong></>
+                        ) : <strong>Agotada</strong>}
                       </p>
                       <button onClick={() => open(p)}>Elegir</button>
                     </div>
                   </article>
                 ))}
             </div>
-            {category === "Personalizadas" && (
+            {category === "Personalizadas" && !products.some(p => p.category_ids.includes("personalizadas")) && (
               <div className="empty">
                 <p>No hay tartas en esta categoría.</p>
                 <button onClick={() => setCategory("Todas")}>
@@ -343,14 +361,14 @@ export default function Shop() {
         <Gallery onQuote={title=>{setQuoteIdea(title?`Me gustaría una tarta inspirada en «${title}».`:"");go("quote");}}/>
           </main>
       )}
-      {view === "product" && (
+      {view === "product" && product && (
         <main className="page">
           <button className="back" onClick={() => go("home")}>
             <ArrowLeft /> Volver a las tartas
           </button>
           <div className="product">
             <img
-              src={`/images/${product.slug}.webp`}
+              src={product.photo}
               alt={`Tarta de ${product.name}`}
             />
             <section>
@@ -367,8 +385,8 @@ export default function Shop() {
                   onChange={(e) => setVariant(e.target.value)}
                 >
                   {product.variants.map((v) => (
-                    <option key={v.id} value={v.id}>
-                      {v.label} · {money(v.price_cents)}
+                    <option key={v.id} value={v.id} disabled={v.available === false}>
+                      {v.label} · {money(v.price_cents)}{v.available === false ? " · Agotado" : ""}
                     </option>
                   ))}
                 </select>
@@ -397,10 +415,10 @@ export default function Shop() {
                   }
                 />
               </label>
-              <button onClick={add}>
+              <button onClick={add} disabled={!selectedVariant || selectedVariant.available === false}>
                 {editing >= 0 ? "Guardar cambios" : "Añadir a la cesta"} ·{" "}
                 {money(
-                  product.variants.find((v) => v.id === variant)!.price_cents *
+                  (selectedVariant?.price_cents ?? 0) *
                     quantity,
                 )}
               </button>
@@ -424,11 +442,11 @@ export default function Shop() {
                   const v = p.variants.find((v) => v.id === l.variantId)!;
                   return (
                     <article className="cart-line" key={i}>
-                      <img src={`/images/${p.slug}.webp`} alt="" />
+                      <img src={p.photo} alt="" />
                       <div>
                         <h3>{p.name}</h3>
                         <p>
-                          {v.label} · {money(v.price_cents)} / tarta
+                          {v.label} · {money(v.price_cents)}{v.available === false ? " · Agotado" : ""} / tarta
                         </p>
                         <p>{l.message}</p>
                         <div className="quantity">

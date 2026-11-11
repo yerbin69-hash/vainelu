@@ -1,6 +1,7 @@
 import Shop from "./shop";
 import { requireDemo } from "../lib/domain";
-export default function Page() {
+import { loadCatalog } from "../lib/server/catalog";
+export default async function Page() {
   try {
     requireDemo();
   } catch {
@@ -14,6 +15,10 @@ export default function Page() {
       </main>
     );
   }
-  return <Shop />;
+  try {
+    return <Shop products={await loadCatalog()} />;
+  } catch {
+    return <Shop products={[]} catalogUnavailable />;
+  }
 }
 export const dynamic = "force-dynamic";
